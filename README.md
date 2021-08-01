@@ -3,6 +3,8 @@
 ## Introduction
 This repository accompanies the paper [*Designing User-Centric Programming Aids for Kinesthetic Teaching of Collaborative Robots*](https://intuitivecomputing.jhu.edu/publications/2021-ras-ajaykumar.pdf). It contains the source code for Demoshop, an interactive robot programming tool that includes user-centric programming aids to help end-users author and edit task demonstration. Demoshop consists of front-end software that runs on the [Unity game engine](https://unity.com/) and back-end software that runs on Ubuntu using [ROS](https://www.ros.org/). 
 
+- - - -
+
 ## Software and Hardware Requirements for Running Demoshop 
 
 ### Front-End
@@ -24,6 +26,8 @@ The Demoshop software is currently set up to work with a Universal Robots UR5 ro
 [icl_ur5_setup_gazebo](https://github.com/intuitivecomputing/ur5_with_robotiq_gripper/tree/master/icl_ur5_setup_gazebo) (**NOTE**: You will need to modify/replace this package if you plan to use Demoshop with a different simulated robot and/or gripper.)
 
 [ar_track_alvar](https://github.com/ros-perception/ar_track_alvar) (*Use branch kinetic-devel*)
+
+- - - -
 
 ## Usage
 *Steps 1 and 7 below should be done on the Unity editor of a computer running Windows 10 with Unity 2018.13.3 installed, and Steps 2 - 6 below should be done on the terminal of a computer running Ubuntu 16.04 with ROS Kinetic installed.*
@@ -55,3 +59,19 @@ The Demoshop software is currently set up to work with a Universal Robots UR5 ro
 
 7. Run the Demoshop front-end software:
 - Press the play button on the upper center of the Unity editor to launch the Demoshop user interface.
+
+- - - -
+
+## BibTeX
+If you use Demoshop in a scientific publication, please cite our work:
+```
+@article{ajaykumar2021designing,
+  title={Designing user-centric programming aids for kinesthetic teaching of collaborative robots},
+  author={Ajaykumar, Gopika and Stiber, Maia and Huang, Chien-Ming},
+  journal={Robotics and Autonomous Systems},
+  pages={103845},
+  year={2021},
+  publisher={Elsevier}
+}
+
+```
