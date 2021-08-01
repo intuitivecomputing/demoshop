@@ -3,6 +3,11 @@
 ## Introduction
 This repository accompanies the paper [*Designing User-Centric Programming Aids for Kinesthetic Teaching of Collaborative Robots*](https://intuitivecomputing.jhu.edu/publications/2021-ras-ajaykumar.pdf). It contains the source code for Demoshop, an interactive robot programming tool that includes user-centric programming aids to help end-users author and edit task demonstration. Demoshop consists of front-end software that runs on the [Unity game engine](https://unity.com/) and back-end software that runs on Ubuntu using [ROS](https://www.ros.org/). 
 
+## Contents
+- [demoshop-windows](https://github.com/intuitivecomputing/demoshop/tree/main/demoshop-windows): This directory is the Unity project folder corresponding to the front-end code for the Demoshop user interface. 
+  - The primary subdirectory of interest within *demoshop-windows* is the [*Assets*](https://github.com/intuitivecomputing/demoshop/tree/main/demoshop-windows/Assets) subdirectory, which contains the information and scripts required to run Demoshop's 3-D simulation. 
+- [demoshop_ubuntu](https://github.com/intuitivecomputing/demoshop/tree/main/demoshop_ubuntu): This directory is the ROS package folder corresponding to the back-end code for Demoshop.
+
 - - - -
 
 ## Software and Hardware Requirements for Running Demoshop 
