@@ -62,8 +62,7 @@ The Demoshop software is currently set up to work with a Universal Robots UR5 ro
 - For the real, physical robot: `rosrun demoshop_ubuntu robot_interface`
 - For the virtual robot: `rosrun demoshop_ubuntu robot_interface_sim`
 
-7. Run the Demoshop front-end software:
-- Press the play button on the upper center of the Unity editor to launch the Demoshop user interface.
+7. Press the play button on the upper center of the Unity editor to launch the Demoshop user interface.
 
 - - - -
 
