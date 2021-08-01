@@ -62,6 +62,26 @@ The Demoshop software is currently set up to work with a Universal Robots UR5 ro
 
 - - - -
 
+## Modifying Demoshop
+We welcome development on the Demoshop software to extend its sensing capabilities and its applicability to different robots and different environments. Below, we describe some of the principal modifications that may be required to use Demoshop with a different robot or task environment. We have also included comments within the Demoshop source code to indicate areas that may required modification. 
+
+For additional development questions that are not covered in this README, we welcome developers to open an issue or contact the author at [gopika@cs.jhu.edu](mailto:gopika@cs.jhu.edu). 
+
+### Modifying the Robot Used With Demoshop
+Demoshop cannot work with any robots that are unsupported by ROS at this time, so developers that want to use it with non-ROS-based robots will need to first develop a ROS package that exposes their robot’s manipulation capabilities and provides MoveIt! integration. Furthermore, Demoshop is meant for manipulation programs developed using demonstration, limiting its use to robots with manipulation (e.g., gripping) and kinesthetic learning capabilities.
+
+To modify Demoshop to work with a different robot, you will need to modify the code referring to the joint arrays used in [*RecordDemo.cs*](https://github.com/intuitivecomputing/demoshop/blob/main/demoshop-windows/Assets/RecordDemo.cs) (e.g., *jointNames*, *jointStates*, *snapJointConfig*) and the *ros_unity_joints* dictionary to reflect the number and the names of the joints of your robot, if different from the UR5’s. On the ROS backend, you will need to edit [*robot_interface.cpp*](https://github.com/intuitivecomputing/demoshop/blob/main/demoshop_ubuntu/src/robot_interface.cpp) and [*robot_interface_sim.cpp*](https://github.com/intuitivecomputing/demoshop/blob/main/demoshop_ubuntu/src/robot_interface_sim.cpp) to use the action server names used by the MoveIt! packages for your robot and gripper. The code interfacing with the gripper is meant for a two-finger gripper and will require modification for different types of end-effectors.
+
+### Using Demoshop in a Different Environment
+Our implementation currently uses AR tag tracking to display task objects (boxes) in Demoshop using the [*ar_track_alvar*](https://github.com/ros-perception/ar_track_alvar) package. We used the AR tag with ID 22 (*“ar_master_22”*) as a fixed reference point and AR tags starting with IDs 0 and IDs 24 to tag two different boxes. To modify the source code to work with your custom objects, you must: (1) add 3-D models of the objects that you would like to track in Demoshop as prefab files into the Assets directory of the Unity project, (2) furnish the objects with AR tags (instructions for how to do this using the ar_track_alvar package can be found [here](http://wiki.ros.org/ar_track_alvar)), and (3) modify the code in the *transformCallback* function in [*robot_interface.cpp*](https://github.com/intuitivecomputing/demoshop/blob/main/demoshop_ubuntu/src/robot_interface.cpp) and [*robot_interface_sim.cpp*](https://github.com/intuitivecomputing/demoshop/blob/main/demoshop_ubuntu/src/robot_interface_sim.cpp) and the code in the *Update* function in [*RecordDemo.cs*](https://github.com/intuitivecomputing/demoshop/blob/main/demoshop-windows/Assets/RecordDemo.cs) to display the 3-D models of your objects when their respective tags are detected. 
+
+All other objects (e.g., robot base, table, TV set) shown in the main Unity Scene (*SampleScene*) are static and were placed manually; these objects may be removed and replaced with custom 3D models to represent a new environment as desired. Collision objects should also be modified in the addCollisionObjects function in [*robot_interface.cpp*](https://github.com/intuitivecomputing/demoshop/blob/main/demoshop_ubuntu/src/robot_interface.cpp) and [*robot_interface_sim.cpp*](https://github.com/intuitivecomputing/demoshop/blob/main/demoshop_ubuntu/src/robot_interface_sim.cpp) according to the static obstacles in the environment in which Demoshop is used.
+
+### “Snap” Feature
+Our code includes a “snap” feature that autocompletes the grasp trajectory for the robot when they rest the robot’s end effector close to a task object for a certain time threshold. This feature is still under development. Instructions on how to disable it if desired are available in the comments in the *AddWaypoint* function in [*RecordDemo.cs*](https://github.com/intuitivecomputing/demoshop/blob/main/demoshop-windows/Assets/RecordDemo.cs).
+
+- - - -
+
 ## BibTeX
 If you use Demoshop in a scientific publication, please cite our work:
 ```
