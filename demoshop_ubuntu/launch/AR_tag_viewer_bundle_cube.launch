@@ -1,0 +1,21 @@
+<launch>
+	<arg name="marker_size" default="5.05" />
+	<arg name="max_new_marker_error" default="0.05" />
+	<arg name="max_track_error" default="0.1" />
+	
+	<arg name="cam_image_topic" default="/cam/image_raw" />
+	<arg name="cam_info_topic" default="/cam/camera_info" />
+
+	<arg name="output_frame" default="world" /> 
+
+	<arg name="desk_bundle_files" default="$(find demoshop_ubuntu)/bundles/desk_tag.xml" />
+	<arg name="bundle_files" default="$(find demoshop_ubuntu)/bundles/small_bigger_tags.xml" />
+
+	<node pkg="tf" type="static_transform_publisher" name="cam_tf_publisher" args="-.74 -.93 .25 4.7124 0 0 ar_master_22 world 100" output="screen"/>
+
+	<node name="ar_tag_desk" pkg="ar_track_alvar" type="findMarkerBundlesNoKinect" respawn="false" output="screen" args="$(arg marker_size) $(arg max_new_marker_error) $(arg max_track_error) $(arg cam_image_topic) $(arg cam_info_topic) $(arg output_frame) $(arg desk_bundle_files)">
+	</node>
+
+	<node name="ar_tag" pkg="ar_track_alvar" type="findMarkerBundlesNoKinect" respawn="false" output="screen" args="$(arg marker_size) $(arg max_new_marker_error) $(arg max_track_error) $(arg cam_image_topic) $(arg cam_info_topic) $(arg output_frame) $(arg bundle_files)">
+	</node> 
+</launch>
